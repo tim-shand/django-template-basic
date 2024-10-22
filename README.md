@@ -2,59 +2,86 @@
 ## Create Python virtual environment
 This is used to separate our project environment from the system installed Python envrionment.   
 This protects the system installed libraries from potential changes made by installing/removing packages for our app.   
-
-1. Create a new virtual environment:   
+- Create a new virtual environment:   
 `py -m venv .venv`
-2. Start the new virtual environment (Windows):   
+- Start the new Virtual Environment (Windows):   
 `.venv\Scripts\Activate.ps1`    
 
 ## Install Django (and other dependencies)
 - Install the Django framework using pip:   
 `py -m pip install Django`
-- Install tweaks to allow for easy customization of form CSS.
+- Install tweaks to allow for easy customization of form CSS.   
 `py -m pip install django-widget-tweaks`   
 
 ## Create Requirements File
 - Lists all the dependencies necessary for a project, often including version numbers.
-- Used to create a consistent environment using `pip install -r requirements.txt`.
+- Used to create a consistent environment using `pip install -r requirements.txt`.   
 `pip freeze > requirements.txt`   
 
-## Create and Start Project
-1. Create new Django project in current directory (replace 'my_project' with project name).   
+## Create New Project
+- Create new Django project in current directory (replace 'my_project' with project name).   
 `django-admin startproject my_project .`   
-2. Start the server on desired port.     
+
+- Make initial migrations. Required to allow us to create a super user account.
+`py manage.py makemigrations`   
+`py manage.py migrate`   
+
+- Create super user account.
+`py manage.py createsuperuser`   
+```
+Username (leave blank to use 'root'): webadmin
+Email address: [leave blank]
+Password: 1q2w3e!Q@W#E
+Password (again): 1q2w3e!Q@W#E
+Superuser created successfully
+```
+
+## Run the Web Server
+- Start the server on desired port.    
 `py manage.py runserver 8080`  
+- Main URL: http://127.0.0.1:8080/
+- Admin URL: http://127.0.0.1:8080/admin/
+- CTRL + C to stop the web server.
+
+## Create Apps
+- Create directory to contain all apps.
+`mkdir my_apps`   
+- Create new Django apps (as required).
+`mkdir my_apps/blog`   
+`py manage.py startapp blog ./my_apps/blog`   
+`mkdir my_apps/users`   
+`py manage.py startapp users ./my_apps/users`   
 
 ## Project Layout
 ```
-my_project/
+root/
 │
-├── manage.py               # Django management script
-├── README.md               # Readme file describing the project
-├── requirements.txt        # Python required modules and dependencies
-├── .gitignore              # Git ignore file (exclude files/dirs when commiting to git)
-├── .venv                   # Python virtual environment
-├── my_project/             # Main project folder
+├── manage.py               # Django management script.
+├── README.md               # Readme file describing the project.
+├── requirements.txt        # Python required modules and dependencies.
+├── .gitignore              # Git ignore file (exclude files/dirs when commiting to git).
+├── .venv                   # Python virtual environment.
+├── my_project/             # Main project/config folder.
 │   ├── __init__.py
-│   ├── settings.py         # Or a settings/ folder with separate files (base.py, dev.py, prod.py)
-│   ├── urls.py
+│   ├── settings.py         # Or a settings/ folder with separate files (base.py, dev.py, prod.py).
+│   ├── urls.py             # Map URL requests to app functions.
 │   ├── wsgi.py
 │   └── asgi.py
 │
-├── apps/                   # Directory for all Django apps
-│   ├── __init__.py         # Makes 'apps' a Python package
-│   ├── app1/               # First Django app
-│   │   ├── migrations/
+├── my_apps/                # Directory for all Django apps.
+│   ├── __init__.py         # Makes 'apps' a Python package.
+│   ├── blog/               # First Django app (Blog).
+│   │   ├── migrations/     # Records of database migrations, when model changes are made.
 │   │   ├── __init__.py
-│   │   ├── admin.py
-│   │   ├── apps.py
-│   │   ├── models.py
+│   │   ├── admin.py        # Register models in the admin interface.
+│   │   ├── apps.py         # App specific configuration.
+│   │   ├── models.py       # Database models, similar to defining the tables and datatypes.
+│   │   ├── forms.py        # Form templates to use with HTML and models.
 │   │   ├── tests.py
-│   │   ├── views.py
-│   │   ├── urls.py         # App-specific URL configuration
-│   │   ├── static/         # App-specific static files
-│   │   └── templates/      # App-specific templates
-│   └── app2/               # Another Django app
+│   │   ├── views.py        # Functions to be executed when project URLs are requested.
+│   │   ├── urls.py         # App-specific URL configuration.
+│   │   └── templates/      # App-specific templates (HTML).
+│   └── users/               # Second Django app (Users).
 │       ├── migrations/
 │       ├── __init__.py
 │       ├── admin.py
@@ -63,14 +90,13 @@ my_project/
 │       ├── tests.py
 │       ├── views.py
 │       ├── urls.py
-│       ├── static/
 │       └── templates/
 │
-├── templates/              # Global templates
-│   ├── base.html
+├── templates/              # Global templates.
+│   ├── base.html           # Used as base HTML template for other pages to built upon.
 │   └── ...
 │
-└── static/                 # Global static files (e.g., CSS, JavaScript, images)
+└── static/                 # Global static files (CSS, JavaScript, images).
     ├── css/
     ├── js/
     └── images/
