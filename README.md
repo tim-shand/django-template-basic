@@ -112,3 +112,11 @@ git add .
 git commit -m "Initial Commit."
 git push -u origin main
 ```
+
+## Run in Docker
+### Overview
+1. Create a Dockerfile with custom image instructions.
+2. Add a .dockerignore file.
+3. Build the image.
+4. Create a docker-compose.yml file.
+5. Spin up the container(s).
