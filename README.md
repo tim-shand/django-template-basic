@@ -76,3 +76,13 @@ my_project/
     └── images/
 ```
 
+## Add to Github
+- Ensure you have your '.gitignore' file populated before committing.
+```
+git init
+git remote add origin https://github.com/tim-shand/django-template-basic.git
+git add .
+git commit -m "Initial Commit."
+git push -u origin main
+```
+
