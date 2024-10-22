@@ -22,11 +22,11 @@ This protects the system installed libraries from potential changes made by inst
 - Create new Django project in current directory (replace 'my_project' with project name).   
 `django-admin startproject my_project .`   
 
-- Make initial migrations. Required to allow us to create a super user account.
+- Make initial migrations. Required to allow us to create a super user account.   
 `py manage.py makemigrations`   
 `py manage.py migrate`   
 
-- Create super user account.
+- Create super user account.   
 `py manage.py createsuperuser`   
 ```
 Username (leave blank to use 'root'): webadmin
@@ -41,12 +41,12 @@ Superuser created successfully
 `py manage.py runserver 8080`  
 - Main URL: http://127.0.0.1:8080/
 - Admin URL: http://127.0.0.1:8080/admin/
-- CTRL + C to stop the web server.
+- `CTRL + C` to stop the web server.
 
 ## Create Apps
-- Create directory to contain all apps.
+- Create directory to contain all apps.   
 `mkdir my_apps`   
-- Create new Django apps (as required).
+- Create new Django apps (as required).   
 `mkdir my_apps/blog`   
 `py manage.py startapp blog ./my_apps/blog`   
 `mkdir my_apps/users`   
@@ -108,7 +108,6 @@ root/
 git init
 git remote add origin https://github.com/tim-shand/django-template-basic.git
 git add .
-git commit -m "Initial Commit."
+git commit -m "Initial Commit V2."
 git push -u origin main
 ```
-
