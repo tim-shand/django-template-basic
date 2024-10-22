@@ -1,28 +1,29 @@
 # Getting Started: Setup Python and Django (Windows)
-## Create Python virtual environment
-This is used to separate our project environment from the system installed Python envrionment.   
-This protects the system installed libraries from potential changes made by installing/removing packages for our app.   
-- Create a new virtual environment:   
+## Create Python Virtual Environment
+This is used to separate our project environment from the system installed Python environment.   
+This protects the system installed libraries from potential changes made by installing/removing packages.   
+- Create a new virtual environment named ".venv":   
 `py -m venv .venv`
-- Start the new Virtual Environment (Windows):   
+- Start the new virtual environment:   
 `.venv\Scripts\Activate.ps1`    
 
 ## Install Django (and other dependencies)
-- Install the Django framework using pip:   
+- Install the Django framework inside the Python virtual environment using pip:   
 `py -m pip install Django`
 - Install tweaks to allow for easy customization of form CSS.   
 `py -m pip install django-widget-tweaks`   
 
 ## Create Requirements File
-- Lists all the dependencies necessary for a project, often including version numbers.
-- Used to create a consistent environment using `pip install -r requirements.txt`.   
+- Lists all the dependencies necessary for a project, including version numbers.
+- Used to create a consistent environment when using `pip install -r requirements.txt`.   
 `pip freeze > requirements.txt`   
 
 ## Create New Project
 - Create new Django project in current directory (replace 'my_project' with project name).   
 `django-admin startproject my_project .`   
 
-- Make initial migrations. Required to allow us to create a super user account.   
+- Make initial database migrations. 
+- Required to allow us to create a super user admin account.   
 `py manage.py makemigrations`   
 `py manage.py migrate`   
 
@@ -31,8 +32,8 @@ This protects the system installed libraries from potential changes made by inst
 ```
 Username (leave blank to use 'root'): webadmin
 Email address: [leave blank]
-Password: 1q2w3e!Q@W#E
-Password (again): 1q2w3e!Q@W#E
+Password: 
+Password (again): 
 Superuser created successfully
 ```
 
@@ -41,7 +42,7 @@ Superuser created successfully
 `py manage.py runserver 8080`  
 - Main URL: http://127.0.0.1:8080/
 - Admin URL: http://127.0.0.1:8080/admin/
-- `CTRL + C` to stop the web server.
+- Use `CTRL + C` to stop the web server.
 
 ## Create Apps
 - Create directory to contain all apps.   
@@ -106,8 +107,8 @@ root/
 - Ensure you have your '.gitignore' file populated before committing.
 ```
 git init
-git remote add origin https://github.com/tim-shand/django-template-basic.git
+git remote add origin https://github.com/[username]/[repo_name].git
 git add .
-git commit -m "Initial Commit V2."
+git commit -m "Initial Commit."
 git push -u origin main
 ```
